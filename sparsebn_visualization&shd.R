@@ -2,13 +2,14 @@ library(sparsebn)
 library(pcalg)
 
 data(pathfinder)
+
 dat <- sparsebnData(pathfinder$data, type = "continuous", ivn = NULL)
 nn <- num.samples(dat)
                # number of samples in the dataset / equivalent to nrow(dat$data)
-lambdas <- generate.lambdas(sqrt(nn), 
+lambdas <- generate.lambdas(sqrt(nn),
                          0.05, lambdas.length = 50, scale = "linear")
 start_time <- Sys.time()
-dags <- estimate.dag(data = dat, 
+dags <- estimate.dag(data = dat,
                      lambdas = lambdas,
                      verbose = FALSE)
 print(dags)
@@ -19,7 +20,7 @@ solution <- select(dags, edges = 195)
 end_time <- Sys.time()
 print(end_time - start_time)
 
-par(mfrow = c(1,2), oma = rep(0,4))
+par(mfrow = c(1, 2), oma = rep(0, 4))
 plotDAG(solution)
 plot(solution,
      layout = igraph::layout_(to_igraph(solution$edges), igraph::in_circle()),
@@ -32,7 +33,7 @@ plot(solution,
 )
 
 # original pathfinder graph
-par(mfrow = c(1,2), oma = rep(0,4))
+par(mfrow = c(1, 2), oma = rep(0, 4))
 plotDAG(pathfinder$dag)
 plot(pathfinder$dag,
      layout = igraph::layout_(to_igraph(pathfinder$dag), igraph::in_circle()),
