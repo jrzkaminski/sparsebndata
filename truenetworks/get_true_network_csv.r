@@ -3,12 +3,12 @@
 
 library("readr")
 library(bnlearn)
-setwd('C:/Users/Jerzy/Documents/GitHub/sparsebndata/truenetworks/')
-healthcare <- readRDS(file = "pigs.rds")
-fileConn<-file("output.txt")
+setwd('/Users/jerzykaminski/Documents/GitHub/sparsebndata/truenetworks/')
+healthcare <- readRDS(file = "magic-irri.rds")
+fileConn<-file("magic-irri.txt")
 for (name in healthcare){
   for (second in name$children){
     line = paste(name$node,second)
-    write(line, file = "output.txt", append=TRUE)
+    write(line, file = "magic-irri.txt", append=TRUE)
   }
 }
