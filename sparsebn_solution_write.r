@@ -2,11 +2,11 @@ library(sparsebn)
 library(igraph)
 library(graph)
 
-df <- read.csv("C:\\Users\\Jerzy\\Documents\\GitHub\\sparsebndata\\data\\andes.csv", header = TRUE, sep = ",", check.names = FALSE)
+df <- read.csv("C:\\Users\\Jerzy\\Documents\\GitHub\\sparsebndata\\data\\hailfinder.csv", header = TRUE, sep = ",", check.names = FALSE)
 
-df <- as.data.frame(unclass(df), stringsAsFactors = TRUE) 
+#df <- as.data.frame(unclass(df), stringsAsFactors = TRUE) 
 
-dat <- sparsebnData(df, type = "discrete")
+dat <- sparsebnData(df, type = 'd')
 start_time <- Sys.time()
 dags <- estimate.dag(data = dat)
 end_time <- Sys.time()
@@ -14,7 +14,7 @@ print(end_time - start_time)
 
 print(dags)
 
-solution <- select(dags, edges = 354)
+solution <- select(dags, edges = 70)
 
 print(solution)
 
@@ -34,8 +34,4 @@ plot(solution,
      edge.arrow.size = 0.45
 )
 
-edgelist <- to_igraph(solution)
-
-x <- get.edgelist(edgelist$edges, names = TRUE)
-
-write.csv(x, "C:\\Users\\Jerzy\\Documents\\GitHub\\sparsebndata\\data\\andes_sparsebn.csv", row.names=FALSE)
+write.csv(x, "C:\\Users\\Jerzy\\Documents\\GitHub\\sparsebndata\\data\\magic-niab_sparsebn_0.898_seconds.csv", row.names=FALSE)
