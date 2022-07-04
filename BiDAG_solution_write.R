@@ -1,8 +1,8 @@
 library(BiDAG)
 library(igraph)
 
-df <- read.csv("C:/Users/Jerzy/Documents/GitHub/sparsebndata/data/pathfinder.csv", header = TRUE, sep = ",", check.names = FALSE)
-# df <- as.data.frame(unclass(df), stringsAsFactors = TRUE) 
+df <- read.csv("C:/Users/Jerzy/Documents/GitHub/sparsebndata/data/medicine_discrete.csv", header = TRUE, sep = ",", check.names = FALSE)
+df <- as.data.frame(unclass(df), stringsAsFactors = TRUE) 
 
 # bde for binary data, bdecat for categorical data, bge for continuous data and usr for a user-defined score
 start_time <- Sys.time()
@@ -15,4 +15,4 @@ n <- getDAG(x, amat = TRUE, cp = FALSE)
 g <- graph.adjacency(n)
 el <- get.edgelist(g)
 
-write.csv(el, "C:\\Users\\Jerzy\\Documents\\GitHub\\sparsebndata\\data\\ecoli70_bidag.csv", row.names=FALSE)
+write.csv(el, "C:\\Users\\Jerzy\\Documents\\GitHub\\sparsebndata\\data\\medicine_discrete_bidag.csv", row.names=FALSE)
